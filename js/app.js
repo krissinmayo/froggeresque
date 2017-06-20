@@ -1,4 +1,6 @@
 /*********************   Enemy   ***********************/
+
+//initial setup of the bugs
 var Enemy = function(y) {
 	this.sprite = 'images/enemy-bug.png';
 	this.x = Math.floor(Math.random() * -200 + 50);
@@ -28,6 +30,7 @@ Enemy.prototype.render = function() {
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 101, 101);
 };
 
+//check if player has gotten hit by any of the bugs
 Enemy.prototype.checkCollision = function(player) {
 	if (player.x < this.x + this.width &&
 		player.x + player.width > this.x &&
@@ -40,20 +43,18 @@ Enemy.prototype.checkCollision = function(player) {
 
 /*********************   Coins   ************************/
 
+//initial setup of the coins
 var Coin = function() {
 	this.sprite = 'images/coin.png';
 	this.x = Math.floor(Math.random() * 595 + 50);
-	this.y = Math.floor(Math.random() * 400);
+	this.y = Math.floor(Math.random() * 290 + 100);
 	this.obtained = false;
 	this.width = 30;
 	this.height = 30;
 
-	//keep coins off the sidewalk
-	if (this.y < 100) {
-		this.y += 100;
-	}
 };
 
+//draw coins on screen only if the have not been picked up
 Coin.prototype.render = function() {
 	if (!this.obtained) {
 		ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 30, 30);
@@ -64,6 +65,7 @@ Coin.prototype.update = function(dt) {
 	this.checkCollision(player);
 };
 
+//check if player picked up a coin
 Coin.prototype.checkCollision = function(player) {
 	if (!this.obtained) {
 		if (player.x < this.x + this.width &&
@@ -78,37 +80,37 @@ Coin.prototype.checkCollision = function(player) {
 
 /**********************   Key   ************************/
 
+//initial setup of the key
 var Key = function() {
 	this.sprite = 'images/key.png';
 	this.x = -300;
 	this.y = 400;
-	this.s = Math.floor(Math.random() * 200);
+	this.s = Math.floor(Math.random() * 200 + 80);
 	this.obtained = false;
 	this.height = 80;
 	this.width = 47;
-
-	//slow keys are boring
-	if (this.s < 60) {
-		this.s = 60;
-	}
 };
 
+//draw key on screen
 Key.prototype.render = function() {
 	if (!this.obtained) {
 		ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 46, 86);
 	}
 };
 
+//update movement
 Key.prototype.update = function(dt) {
 	this.x += this.s * dt;
 
 	//send key back to left side of screen
 	if (this.x > ctx.canvas.width) {
-		this.x = Math.floor(Math.random() * -600);
+		this.x = Math.floor(Math.random() * -300);
+		this.s = Math.floor(Math.random() * 200 + 80);
 	}
 	this.checkCollision(player);
 };
 
+//check if player has picked up the key
 Key.prototype.checkCollision = function(player) {
 	if (!this.obtained) {
 		if (player.x < this.x + this.width &&
@@ -122,6 +124,7 @@ Key.prototype.checkCollision = function(player) {
 
 /**********************   Door   ***********************/
 
+//initial creation of the door
 var Door = function() {
 	this.sprite = 'images/doorclosed.png';
 	this.x = 606;
@@ -130,7 +133,7 @@ var Door = function() {
 	this.obtained = false;
 };
 
-//new game
+//reset the door
 Door.prototype.reset = function() {
 	this.open = false;
 	this.optained = false;
@@ -138,6 +141,7 @@ Door.prototype.reset = function() {
 };
 
 //if player has key, change image to gem
+//if the door is open (ie: gem is on screen), player can pick it up
 Door.prototype.render = function() {
 	if (!this.open) {
 		ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 100, 144);
@@ -148,13 +152,14 @@ Door.prototype.render = function() {
 	}
 };
 
+//if player has the key, check each frame if player is at the door
 Door.prototype.update = function() {
 	if (key.obtained) {
 		this.checkCollision(player);
 	}
 };
 
-//if player has key, can then pick up the gem
+//if player has the key, can then pick up the gem
 Door.prototype.checkCollision = function(player) {
 	if (player.x === this.x && player.y < this.y + 144 && player.y + 83 > this.y) {
 		if (this.open) {
@@ -176,7 +181,7 @@ Door.prototype.openDoor = function() {
 
 /********************   Selector   *********************/
 
-//used in main menu screen in engine.js
+//used in main menu screen in engine.js to create selector
 var Selector = function() {
 	this.x = 101;
 	this.y = 165;
@@ -184,7 +189,7 @@ var Selector = function() {
 	this.sprite = 'images/selector.png';
 };
 
-// Receives input from user to move selector
+//translate input from user to move selector
 Selector.prototype.handleInput = function(key) {
 	switch (key) {
 		case 'left':
@@ -212,7 +217,7 @@ Selector.prototype.handleInput = function(key) {
 	}
 };
 
-// Selector render function
+//render selector on menu screen
 Selector.prototype.render = function() {
 	ctx.save();
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 101, 130);
@@ -240,6 +245,7 @@ function initLoad() {
 
 /*********************   Player   **********************/
 
+//initial setup of player
 var Player = function() {
 	this.sprite = '';
 	this.x = 303;
@@ -248,12 +254,14 @@ var Player = function() {
 	this.height = 70;
 };
 
+//draw character on the board
 Player.prototype.render = function() {
 	ctx.drawImage(Resources.get(this.sprite), this.x, this.y, 101, 101);
 };
 
 Player.prototype.update = function(dt) {
-	if (win === true || lose === true) {
+	//turns off the game and turns on the menu if player wins or loses
+	if (success === true || lose === true) {
 		play = false;
 	}
 
@@ -264,16 +272,17 @@ Player.prototype.update = function(dt) {
 
 	//game over if gem obtained
 	if (door.obtained) {
-		win = true;
+		success = true;
 	}
 };
 
-//when player gets hit by a bug
+//when player gets hit by a bug, go back to start position
 Player.prototype.reset = function() {
 	this.x = 303;
 	this.y = -25;
 };
 
+//translate keyboard press to character movement and manage boundaries
 Player.prototype.handleInput = function(key) {
 	if (key === 'up') {
 		this.y -= 83;
@@ -309,7 +318,7 @@ Player.prototype.handleInput = function(key) {
 var play = false;
 
 //win message
-var win = false;
+var success = false;
 
 //lose message
 var lose = false;
