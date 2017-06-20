@@ -197,11 +197,13 @@ var Engine = (function(global) {
 			ctx.fillText('Uh oh! You ran out of points', ctx.canvas.width / 2, 100);
 		}
 
-		if (win === true) {
+		if (success === true) {
 			ctx.fillStyle = 'white';
 			ctx.font = 'bold 34pt Times New Roman';
 			ctx.textAlign = 'center';
-			ctx.fillText('Congratulations! Level 1 complete.', ctx.canvas.width / 2, 100);
+			ctx.fillText('Congratulations! Level 1 complete', ctx.canvas.width / 2, 100);
+			ctx.font = 'bold 18pt Times New Roman';
+			ctx.fillText('(level 2 is under construction)', ctx.canvas.width / 2, 125);
 		}
 	}
 
