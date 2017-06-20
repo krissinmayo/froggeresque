@@ -1,9 +1,11 @@
+'use strict';
+
 /*********************   Enemy   ***********************/
 
 //initial setup of the bugs
 var Enemy = function(y) {
 	this.sprite = 'images/enemy-bug.png';
-	this.x = Math.floor(Math.random() * -200 + 50);
+	this.x = Math.floor(Math.random() * -200);
 	this.y = y;
 	this.s = Math.floor(Math.random() * 250 + 50);
 	this.width = 83;
@@ -327,6 +329,7 @@ var lose = false;
 var score = 100;
 
 //character chosen by player
+var selector;
 var selectedChar;
 var chars = [
 	'images/char-boy.png',
@@ -343,7 +346,7 @@ var player = new Player();
 var key = new Key();
 var door = new Door();
 
-for (i = 0; i < 8; i++) {
+for (var i = 0; i < 8; i++) {
 	allCoins.push(new Coin());
 }
 
