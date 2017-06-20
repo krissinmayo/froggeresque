@@ -1,14 +1,12 @@
-# froggeresque
-frontend-nanodegree-arcade-game
-===============================
+# Froggeresque
 
-Students should use this [rubric](https://review.udacity.com/#!/projects/2696458597/rubric) 
-for self-checking their submission. Make sure the functions you write are **object-oriented** - either 
-class functions (like Player and Enemy) or class prototype functions such as 
-Enemy.prototype.checkCollisions, and that the keyword 'this' is used appropriately within your class 
-and class prototype functions to refer to the object the function is called upon. Also be sure that 
-the **readme.md** file is updated with your instructions on both how to 1. Run and 2. Play your arcade 
-game.
+[Click here](http://krismayo.com/froggeresque/) to run and play the game.
 
-For detailed instructions on how to get started, check out this 
-[guide](https://docs.google.com/document/d/1v01aScPjSWCCWQLIpFqvg3-vXLH2e8_SZQKC8jNO0Dc/pub?embedded=true).
+Use the'left' and 'right' arrows on your keyboard to highlight the character you would like to play as. 
+Press 'enter' to make your selection and begin the game. Once you are in the game, use the 'up', 'down', 
+'left', 'right' arrows to control your character. You can run off the left or right side of the screen 
+in order to get to the opposite side of the game board. You cannot go off the top or bottom edges however.
+Cross the field to get to the river and find the key. Return to the top of the screen to unlock the box
+and claim your reward. Just don't hit any bugs along the way! You can collect coins for extra points.
+
+Good luck!
