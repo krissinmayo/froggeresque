@@ -338,15 +338,15 @@ for (i = 0; i < 8; i++) {
 	allCoins.push(new Coin());
 }
 
-for (i = 0; i < 8; i++) {
+for (i = 0; i < 6; i++) {
 	var j = 0;
 	if (i < 2) {
 		j = 50;
 	}
-	else if (i < 4) {
+	else if (i < 3) {
 		j = 140;
 	}
-	else if (i < 7) {
+	else if (i < 5) {
 		j = 225;
 	}
 	else {
