@@ -1,10 +1,10 @@
 body {
     background-color: black;
-    max-width: 1000px;
     display: block;
     margin-left: auto;
     margin-right: auto;
     text-align: right;
+    max-width: 1050px;
 }
 footer {
     border-top: 0.1px solid white;
@@ -12,25 +12,18 @@ footer {
 }
 .title {
     color: white;
-    position: fixed;
-    top: 0;
-    left: 0;
     text-align: center;
     max-width: 22%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    display: inline-grid;
+    flex-wrap: wrap;
     border: 0.1px solid white;
-    margin: 1%;
     padding: 2%;
-    margin-top: 3%;
     height: 500px;
+    float: left;
 }
 .canvas {
     z-index: 1000;
     margin-top: 3%;
-    max-width: 75%;
-    display: block;
 }
 .social-media {
     text-align: center;
@@ -43,8 +36,9 @@ footer {
 }
 h1 {
     text-align: center;
-    margin-top: 8%;
     font-size: 40px;
+    line-height: 2em;
+    margin: 0px;
 }
 h2 {
     color: white;
@@ -64,4 +58,58 @@ li {
 }
 .green {
     color: #90ed74;
+}
+.red {
+    color: #ff7273;
+}
+@media screen and (max-width: 980px) {
+    body {
+        text-align: center;
+    }
+    .title {
+        color: white;
+        position: fixed;
+        text-align: center;
+        top: 0;
+        left: 0;
+        right: 0;
+        display: inline-block;
+        border: 0.1px solid white;
+        max-width: 100%;
+        height: 140px;
+        padding: 0px;
+        width: 95%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    h1 {
+        line-height: 1em;
+        margin: 0px;
+        font-size: 36px;
+        padding-top: 1%;
+    }
+    h2 {
+        line-height: 1em;
+        padding-left: 5%;
+        padding-right: 5%;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        margin: 0;
+        font-size: 20px;
+    }
+    ul {
+        display: block;
+        padding: 0px;
+        margin: 0px;
+    }
+    li {
+        font-size: 20px;
+        display: inline-grid;
+        width: 30%;
+        font-weight: bolder;
+        margin: 0px;
+    }
+    .canvas {
+        margin-top: 18%;
+    }
 }
