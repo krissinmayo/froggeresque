@@ -235,9 +235,20 @@ function playAgain() {
 	player.sprite = chars[selectedChar];
 
 	score = 100;
-	win = false;
+	success = false;
 	lose = false;
 	play = true;
+	
+	for (var i = 0; i < 8; i++) {
+		allCoins.push(new Coin());
+	}
+
+	var l = allEnemies.length;
+
+	for (i = 0; i < l; i++) {
+		allEnemies[i].x = Math.floor(Math.random() * -200);
+		allEnemies[i].s = Math.floor(Math.random() * 250 + 50);	
+	}
 }
 
 //used in engine.js
